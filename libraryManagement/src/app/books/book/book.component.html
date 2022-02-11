@@ -1,0 +1,122 @@
+<form
+*ngIf="isBookForm"
+name="book"
+#f="ngForm"
+novalidate
+>
+<div class="form-group">
+  <label for="title">Book Title</label>
+  <input
+    type="text"
+    class="form-control"
+    name="title"
+    [(ngModel)]="book.title"
+    data-placeholder={{book.title}}
+    required
+    #title="ngModel"
+  />
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="f.submitted && title.invalid"
+  >
+    title is required!
+  </div>
+</div>
+<div class="form-group">
+    <label for="genre">Genre</label>
+    <input
+      type="text"
+      class="form-control"
+      name="genre"
+      [(ngModel)]="book.genre"
+      data-placeholder={{book.genre}}
+      #genre="ngModel"
+    />
+  </div>
+<div class="form-group">
+  <label for="author">Author Name</label>
+  <input
+    type="text"
+    class="form-control"
+    name="author"
+    [(ngModel)]="book.author"
+    data-placeholder={{book.author}}
+    required
+    #author="ngModel"
+  />
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="f.submitted && author.invalid"
+  >
+    author name is required!
+  </div>
+</div>
+<div class="form-group">
+  <label for="isbn">ISBN</label>
+  <input
+    type="text"
+    class="form-control"
+    name="isbn"
+    [(ngModel)]="book.isbn"
+    data-placeholder={{book.isbn}}
+    required
+    #isbn="ngModel"
+  />
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="f.submitted && isbn.invalid"
+  >
+    ISBN is required!
+  </div>
+</div>
+<div class="form-group">
+  <label for="price" >Price</label>
+  <input
+    type="text"
+    class="form-control"
+    name="price"
+    [(ngModel)]="book.price"
+    data-placeholder="{{book.price}}"
+    required
+    pattern="[0-9]{0,6}(.*)[0-9]{0,2}"
+    #price="ngModel"
+  />
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="f.submitted && price.invalid"
+  >
+    <div *ngIf="price.errors.pattern">price can't have characters and should have atmost 2 values after decimal </div>
+    <div *ngIf="price.errors.required">price required</div>
+  </div>
+</div>
+<div class="form-group">
+  <button class="btn btn-success" *ngIf="!isEdit" (click)="saveBook()">
+   save
+  </button>
+</div>
+<div class="form-group">
+  <button class="btn btn-warning" *ngIf="isEdit" (click)="saveBook()">
+   Update
+  </button>
+  <button class="btn btn-danger float-right" *ngIf="isEdit" type="reset">Reset</button>
+</div>
+<div class="form-group">
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="f.submitted && isFailUpdate && isFailCreate"
+  >
+      can't save book details
+  </div>
+</div>
+</form>
+<div class="alert alert-success" *ngIf="!isFailCreate && !isEdit && !isBookForm">
+  New Book Created 
+</div>
+<div class="alert alert-success" *ngIf="!isFailUpdate && isEdit && !isBookForm">
+ Book Updated 
+</div>

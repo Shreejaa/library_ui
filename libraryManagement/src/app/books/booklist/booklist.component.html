@@ -1,0 +1,66 @@
+<div class="row pt-5">
+    <div class="col-md mx-auto">
+        <div class="card rounded-0 ">
+            <div class="card-header transparency">
+                <h3 class="mb-0">Book Collection</h3>
+            </div>
+            <div class="card-body">
+                <button type="button" *ngIf="isRoleAdmin" class="btn btn-info" data-toggle="modal" data-target="#modal" (click)="create()">
+                    <i class="fa fa-book" style="color:honeydew;"> Add book</i>
+                </button>
+        <br *ngIf="isRoleAdmin">
+        <br *ngIf="isRoleAdmin">
+       <table class="table">
+    <thead>
+        <th *ngFor="let col of bookColumns">{{col}}</th>
+        <ng-template [ngIf]="isRoleAdmin">
+            <th *ngFor="let col2 of actionColumns">{{col2}}</th>
+        </ng-template>
+        <th *ngFor="let col2 of actionColumns2">{{col2}}</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books; index as i">
+            <td scope="row">{{i+1}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.genre}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.isbn}}</td>
+            <td>${{book.price}}</td>
+            <td *ngIf="isRoleAdmin" ><i class="fa fa-edit" aria-hidden="true"  data-toggle="modal" data-target="#modal" style="color:green;cursor: pointer;" (click)=update(book,book.id)></i></td>
+            <td *ngIf="isRoleAdmin" ><i class="fa fa-trash" style="color:red;cursor: pointer;" (click)="delete(book.bookid)"></i></td>
+            <td><i class="fa fa-book" style="color:midnightblue;cursor: pointer;" (click)="requestBook(book.bookid)" ></i></td>
+      </tr>
+    </tbody>
+</table>
+<div class="alert alert-success" *ngIf="isDeleted">
+    book deleted successfully!!
+  </div>
+  <div class="alert alert-danger" *ngIf="isDeleteFail">
+    book can't be deleted due to {{deleteErrorMessage}}!!
+  </div>
+  <div class="alert alert-success" *ngIf="isRequested">
+    book requested!
+  </div>
+  <div class="alert alert-danger" *ngIf="isRequestFail">
+    book can't be requested!
+  </div>
+    </div>
+</div>
+
+
+<!-- Modal update book-->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create or Update Book Details</h5>
+            </div>
+            <div class="modal-body">
+               <app-book [book]="updateBook" [id]="updateBookid" [isEdit]="isEdit" (saveEvent) ="saveBookAck($event)"></app-book>     
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closePopup" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

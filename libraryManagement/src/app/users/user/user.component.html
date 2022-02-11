@@ -1,0 +1,51 @@
+<div class="row pt-5">
+    <div class="col-md mx-auto">
+        <div class="card rounded-0 ">
+            <div class="card-header transparency">
+                <h3 class="mb-0">User Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <form>
+                        <fieldset class="form-group row">
+                            <div class="col-sm-1-12">
+                              <p>Firstname&emsp;:&ensp;{{user.firstname}}</p>  
+                              <p>Lastname&emsp;:&ensp;{{user.lastname}}</p>
+                              <p>Username&emsp;:&ensp;{{user.username}}</p>
+                              <p>Useremail&emsp;:&ensp;{{user.useremail}}</p>
+                              <p>Phone Number&emsp;:&ensp;{{user.phoneno}}</p>
+                              <p>Password&emsp;:&ensp;{{user.password}}</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                            </div>
+                        </fieldset>
+                        <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-10">
+                                <button type="button" class="btn btn-info float-right " data-toggle="modal" data-target="#modelId">
+                                    Change details
+                                  </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>                                                                                 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title">Change User Details</h5>
+                    </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <app-update-user></app-update-user>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

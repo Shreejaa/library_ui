@@ -1,0 +1,34 @@
+<div class="row pt-5">
+    <div class="col-md mx-auto">
+        <div class="card rounded-0 ">
+            <div class="card-header transparency">
+                <h3 class="mb-0">Users List</h3>
+            </div>
+            <div class="card-body">
+       <table class="table">
+    <thead>
+        <th *ngFor="let col of userColumn">{{col}}</th>
+        <th *ngFor="let col2 of actionColumns">{{col2}}</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; index as i">
+            <td scope="row">{{i+1}}</td>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.useremail}}</td>
+            <td>{{user.phoneno}}</td>
+            <td>{{user.role}}</td>
+            <td><i class="fa fa-trash" style="color:red;cursor: pointer;" (click)="delete(user.userid)"></i></td>
+        </tr>
+    </tbody>
+</table>
+<div class="alert alert-success" *ngIf="isDeleted">
+    User deleted successfully!!
+  </div>
+  <div class="alert alert-danger" *ngIf="isDeleteFail">
+    User can't be deleted due to {{deleteErrorMessage}}!!
+  </div>
+
+    </div>
+</div>
